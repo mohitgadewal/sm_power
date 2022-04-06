@@ -849,15 +849,16 @@ love and trust.</h2>
           <!-- <div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=SM%20POWER%20SERVICES,%20100,%20MAHAKAUSHAL%20NAGAR,%20Adhartal,%20Jabalpur,%20Madhya%20Pradesh%20482004&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://123movies-to.org">123movies</a><br><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}</style><a href="https://www.embedgooglemap.net">google maps code</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div></div> -->
 
           <div class="col-lg-6">
-            <form action="" method="post" role="form" class="php-email-form">
+            <form action="https://formspree.io/f/xeqnlbdv"
+            method="POST" role="form" class="php-email-form" id="my-form">
               <div class="form-row">
-                <div class="col-md-6 form-group">
+                <!-- <div class="col-md-6 form-group">
                   <input type="text" name="name" class="form-control" id="name" placeholder="Your Name"
                     data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
                   <div class="validate"></div>
-                </div>
+                </div> -->
                 <div class="col-md-6 form-group">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email"
+                  <input type="email" name="email" class="form-control" id="email" placeholder="Your Email"
                     data-rule="email" data-msg="Please enter a valid email" />
                   <div class="validate"></div>
                 </div>
@@ -868,12 +869,14 @@ love and trust.</h2>
                   data-msg="Please write something for us" placeholder="Message"></textarea>
                 <div class="validate"></div>
               </div>
-              <div class="mb-3">
+              <!-- <div class="mb-3">
                 <div class="loading">Loading</div>
                 <div class="error-message"></div>
                 <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
+              </div> -->
+
               <div class="text-center"><button type="submit">Send Message</button></div>
+              <p id="my-form-status"></p>
             </form>
           </div>
 
@@ -1023,3 +1026,29 @@ love and trust.</h2>
 </body>
 
 </html>
+
+<script>
+
+  var form = document.getElementById("my-form");
+
+  async function handleSubmit(event) {
+      event.preventDefault();
+      var status = document.getElementById("my-form-status");
+      var data = new FormData(event.target);
+      fetch(event.target.action, {
+          method: form.method,
+          body: data,
+          headers: {
+              'Accept': 'application/json'
+          }
+      }).then(response => {
+          // status.innerHTML = 
+          alert("Thankyou for submission");
+          form.reset()
+      }).catch(error => {
+          // status.innerHTML =
+          alert("Oops! There was a problem submitting your form");
+      });
+  }
+  form.addEventListener("submit", handleSubmit)
+</script>
